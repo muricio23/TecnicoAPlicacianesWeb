@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App del Clima</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="contenedor-clima">
+        <h1>App del Clima</h1>
+        
+        <div class="buscador">
+            <input type="text" id="ciudad-input" placeholder="Ingresa el nombre de la ciudad">
+            <button id="buscar-btn">Buscar</button>
+        </div>
+
+        <div id="info-clima" class="info-clima" style="display: none;">
+            <h2 id="ciudad-nombre"></h2>
+            <p id="temperatura"></p>
+            <p id="descripcion"></p>
+            <img id="icono-clima" src="" alt="Ícono del clima">
+        </div>
+
+        <p id="mensaje-error" class="error-mensaje" style="display: none;"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

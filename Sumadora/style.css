@@ -1,0 +1,82 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e0ffff; /* Fondo verde agua claro */
+    font-family: sans-serif;
+}
+
+.calculator {
+    border: 2px solid #008080; /* Borde verde agua oscuro */
+    border-radius: 10px; /* Bordes redondeados */
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    background-color: #f0f8ff; /* Fondo para el cuerpo de la calculadora */
+}
+
+.calculator-screen-container {
+    display: grid;
+    grid-template-rows: 1fr 2fr; /* Crea dos filas para el historial y la pantalla principal */
+    background-color: #008080; /* Color de fondo deseado */
+    color: white;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+} /* <-- Se agregó el cierre aquí */
+
+.history {
+    font-size: 1.2rem;
+    text-align: right;
+    margin-bottom: 5px; /* Espacio entre el historial y la pantalla principal */
+    opacity: 0.8; /* Hace que el texto del historial sea ligeramente menos prominente */
+}
+
+.calculator-screen {
+    width: 100%;
+    border: none;
+    background: transparent; /* Hace que el input sea transparente para que se vea el color de fondo */
+    color: white;
+    text-align: right;
+    font-size: 2.5rem;
+}
+
+.calculator-keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    padding: 20px;
+}
+
+.calculator-keys button {
+    height: 60px;
+    border: none;
+    background-color: #e6e6fa; /* Lavanda para los números */
+    color: #333;
+    border-radius: 20px; /* Botones redondos */
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.calculator-keys button:hover {
+    background-color: #dcd0ff; /* Cambio de color al pasar el cursor */
+}
+
+.operator {
+    background-color: #6a5acd; /* Azul violeta para los operadores */
+    color: white;
+}
+
+.operator:hover {
+    background-color: #483d8b;
+}
+
+.equal-sign {
+    grid-column: span 2;
+    background-color: #3cb371; /* Verde medio para el botón igual */
+    color: white;
+}
+
+.equal-sign:hover {
+    background-color: #2e8b57;
+}

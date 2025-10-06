@@ -1,0 +1,138 @@
+:root {
+    --primary-bg: #e0f7fa; /* Un aqua muy claro para el fondo */
+    --container-bg: #ffffff;
+    --header-color: #00796b; /* Verde teal oscuro */
+    --status-color: #00bcd4; /* Azul cian brillante */
+    --border-color: #0097a7; /* Teal más oscuro para el tablero */
+    --cell-bg: #ffffff;
+    --cell-hover-bg: #e0f2f7; /* Un aqua claro al pasar el ratón */
+    --playerX-color: #ff7043; /* Naranja rojizo para X (contraste) */
+    --playerO-color: #4db6ac; /* Aqua medio para O */
+    --button-bg: #26a69a; /* Teal medio para el botón */
+    --button-hover-bg: #00897b; /* Teal más oscuro al pasar el ratón */
+    --score-color: #004d40; /* Verde oscuro para el marcador */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--primary-bg);
+    color: #333;
+}
+
+.container {
+    text-align: center;
+    background: var(--container-bg);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    color: var(--header-color);
+    margin-bottom: 15px;
+    font-size: 2.5em;
+}
+
+#status {
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: var(--status-color);
+}
+
+.score-board {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 25px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--score-color);
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 4px;
+    margin: 0 auto;
+
+    width: fit-content;
+
+    border: 3px solid var(--border-color);
+    background-color: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden; /* Para que las celdas se vean dentro del borde redondeado */
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: var(--cell-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5em;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease, transform 0.1s ease-out;
+    border-radius: 3px;
+}
+
+.cell:hover {
+    background-color: var(--cell-hover-bg);
+    transform: scale(1.02);
+}
+
+.cell.X {
+    color: var(--playerX-color);
+}
+
+.cell.O {
+    color: var(--playerO-color);
+}
+
+button {
+    margin-top: 25px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    background-color: var(--button-bg);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease-out, box-shadow 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 10px; /* Para separar los botones */
+    margin-right: 10px; /* Para separar los botones */
+}
+
+button:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos específicos para los botones si es necesario */
+#restartButton {
+    /* Puedes añadir estilos específicos aquí si quieres que se vea diferente al de reiniciar marcador */
+}
+
+#resetScoreButton {
+    background-color: #f44336; /* Un rojo para el botón de resetear marcador */
+    margin-left: 15px; /* Más espacio para distinguirlo */
+}
+
+#resetScoreButton:hover {
+    background-color: #d32f2f;
+}

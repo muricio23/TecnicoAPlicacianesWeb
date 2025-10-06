@@ -1,0 +1,194 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    background-color: #e0ffff;
+    color: #333;
+}
+
+h1 {
+    color: #008080;
+    margin-bottom: 20px;
+}
+
+/* ======================================= */
+/* Contenedor Principal (Gráfica + Controles) */
+/* ======================================= */
+#main-content {
+    position: relative;
+    display: flex; /* Habilita el diseño de columna */
+    width: 95%; /* Ocupa casi todo el ancho de la ventana */
+    max-width: 1400px; /* Ancho máximo para no expandirse demasiado */
+    gap: 20px; /* Espacio entre el canvas y los controles */
+}
+
+/* La gráfica ocupa la mayor parte del espacio */
+#myCanvas {
+    flex-grow: 1; /* Permite que el canvas crezca y ocupe el espacio restante */
+    min-width: 600px; /* Asegura un tamaño mínimo para la gráfica */
+    height: 600px; /* Altura fija para un buen espacio de visualización */
+    border: 2px solid #008080;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* La barra lateral de controles (a la derecha) */
+.controls {
+    width: 300px; 
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.function-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    padding: 8px 15px;
+    margin-right: 5px;
+}
+
+input[type="color"] {
+    width: 35px;
+    height: 35px;
+    padding: 2px;
+}
+
+button {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+    margin: 5px 2px;
+}
+
+button:hover {
+    background-color: #008b8b;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-start; 
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+/* ======================================= */
+/* ESTILOS DE NAVEGACIÓN (Zoom Controls) */
+/* ======================================= */
+
+#zoom-controls {
+    position: absolute;
+    bottom: 20px; 
+    right: 330px; /* Separación para dejar espacio a la barra lateral de controles */
+    display: flex;
+    flex-direction: column; 
+    z-index: 50;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.zoom-button {
+    background-color: #f0f8ff;
+    color: #008080;
+    border: 1px solid #008080;
+    padding: 8px 12px;
+    margin: 3px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.2s;
+}
+
+.zoom-button:hover {
+    background-color: #e0ffff;
+}
+
+/* ======================================= */
+/* ESTILOS DEL TECLADO VIRTUAL (Compacto) */
+/* ======================================= */
+
+.keyboard-container {
+    position: fixed; 
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; 
+    max-width: 1200px; /* Mayor ancho */
+    background-color: #f0f8ff;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; 
+    transition: transform 0.3s ease-in-out;
+
+    /* Configuración para apilar las dos grandes filas de teclas */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.keyboard-container.hidden {
+    transform: translate(-50%, 100%);
+}
+
+/* Estilo base de los botones dentro del teclado */
+.keyboard-container .key {
+    padding: 10px 5px;
+    border-radius: 5px;
+    font-size: 1em; /* Ajustado a 1em para que quepa mejor */
+    min-width: 30px; 
+}
+
+/* NUEVO: Configuración de la cuadrícula para la fila de Funciones */
+.functions-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 columnas para hacerlo más ancho */
+    gap: 5px;
+    padding: 5px;
+    background-color: #e0f8ff; 
+    border-radius: 8px;
+}
+
+/* NUEVO: Configuración de la cuadrícula para la fila de Números y Operadores */
+.numbers-operators-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columnas para esta sección */
+    gap: 5px;
+    padding: 5px;
+    background-color: #e0f8ff; 
+    border-radius: 8px;
+}
+
+/* Icono flotante */
+#toggle-keyboard-icon {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}

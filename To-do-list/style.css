@@ -1,0 +1,114 @@
+/* === Estilos Generales para el Body === */
+/* Se aplica al <body> del HTML */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* Fondo blanco azulado muy claro */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenedor */
+    align-items: flex-start; /* Alinea arriba */
+    padding-top: 50px;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* === Contenedor Principal === */
+/* Se aplica al <div class="contenedor"> que envuelve todo */
+.contenedor {
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 30px;
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%;
+    max-width: 420px; /* Ancho máximo para mantenerlo compacto */
+}
+
+/* === Título Principal === */
+/* Se aplica al <h1> dentro del contenedor */
+h1 {
+    text-align: center;
+    color: #20b2aa; /* Verde Aqua Oscuro */
+    margin-bottom: 25px;
+}
+
+/* === Área de Entrada de Tarea === */
+/* Se aplica al <div class="entrada-tarea"> que contiene el input y el botón */
+.entrada-tarea {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+/* === Campo de Texto para Nueva Tarea === */
+/* Se aplica al <input id="input-tarea"> */
+#input-tarea {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px; /* Bordes redondeados a la izquierda */
+    font-size: 16px;
+}
+
+/* === Botón de Añadir Tarea === */
+/* Se aplica al <button id="btn-añadir"> */
+#btn-añadir {
+    padding: 10px 15px;
+    background-color: #40e0d0; /* Verde Aqua Brillante */
+    color: white;
+    border: none;
+    border-radius: 0 8px 8px 0; /* Bordes redondeados a la derecha */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+/* === Hover del Botón de Añadir === */
+#btn-añadir:hover {
+    background-color: #20b2aa; /* Verde Aqua Oscuro al pasar el ratón */
+}
+
+/* === Lista de Tareas === */
+/* Se aplica al <ul id="lista-tareas"> */
+#lista-tareas {
+    list-style: none; /* Elimina los puntos de la lista */
+    padding: 0;
+}
+
+/* === Cada Tarea Individual === */
+/* Se aplica a cada <li> dentro de la lista */
+#lista-tareas li {
+    background-color: #e6f9ff; /* Fondo muy claro para cada tarea */
+    border-left: 5px solid #40e0d0; /* Borde vertical Aqua */
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer; /* Indica que se puede marcar como completada */
+    transition: all 0.3s;
+}
+
+/* === Tareas Marcadas como Completadas === */
+/* Se aplica cuando el <li> tiene la clase "completada" */
+.completada {
+    text-decoration: line-through;
+    color: #888;
+    background-color: #c0ebeb !important; /* Aqua claro para completadas */
+    border-left: 5px solid #20b2aa; /* Borde Aqua más oscuro */
+}
+
+/* === Botón de Eliminar Tarea === */
+/* Se aplica al <button class="btn-eliminar"> dentro de cada <li> */
+.btn-eliminar {
+    background: none;
+    border: none;
+    color: #dc3545; /* Rojo para eliminar */
+    font-size: 20px; /* Más grande para visibilidad */
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+/* === Hover del Botón de Eliminar === */
+.btn-eliminar:hover {
+    opacity: 1;
+}

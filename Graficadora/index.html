@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graficador de Funciones</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"></script>
+</head>
+<body>
+    <h1>Graficador de Funciones Matemáticas</h1>
+
+    <div id="main-content"> 
+        
+        <canvas id="myCanvas"></canvas>
+
+        <div class="controls">
+            <div id="functions-container">
+                <div class="function-row">
+                    <input type="text" class="function-input" placeholder="Ej: x^2, sin(x)">
+                    <input type="color" class="color-picker" value="#ff0000">
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button id="addFunctionButton">Añadir Función</button>
+                <button id="drawAllButton">Graficar</button>
+                <button id="hide-keyboard-button" class="action-button">❌</button>
+            </div>
+        </div>
+
+        <div id="zoom-controls">
+    <button id="reset-view-button" class="zoom-button">🏠</button>
+    <button id="zoom-in-button" class="zoom-button">➕</button>
+    <button id="zoom-out-button" class="zoom-button">➖</button>
+</div>
+
+
+    <button id="toggle-keyboard-icon" class="action-button">⌨️</button>
+
+    <div id="keyboard-container" class="keyboard-container hidden">
+        
+        <div class="key-row functions-row">
+            <button class="key">sen</button>
+            <button class="key">cos</button>
+            <button class="key">tg</button>
+            <button class="key">sen⁻¹</button>
+            <button class="key">cos⁻¹</button>
+            <button class="key">tg⁻¹</button>
+
+            <button class="key">ln</button>
+            <button class="key">log₁₀</button>
+            <button class="key">logₓ</button>
+            <button class="key">eˣ</button>
+            <button class="key">10ˣ</button>
+            <button class="key">e</button>
+
+            <button class="key">x</button>
+            <button class="key">y</button>
+            <button class="key">z</button>
+            <button class="key">π</button>
+            <button class="key">^</button>
+            <button class="key">√</button>
+
+            <button class="key">≤</button>
+            <button class="key">≥</button>
+            <button class="key"><</button>
+            <button class="key">></button>
+            <button class="key">(</button>
+            <button class="key">)</button>
+        </div>
+
+        <div class="key-row numbers-operators-row">
+            <button class="key">7</button>
+            <button class="key">8</button>
+            <button class="key">9</button>
+            <button class="key">×</button>
+            <button class="key">÷</button>
+            
+            <button class="key">4</button>
+            <button class="key">5</button>
+            <button class="key">6</button>
+            <button class="key">+</button>
+            <button class="key">-</button>
+            
+            <button class="key">1</button>
+            <button class="key">2</button>
+            <button class="key">3</button>
+            <button class="key">=</button> <button class="key">.</button>
+            
+            <button class="key">0</button>
+            <button class="key">⬅️</button>
+            <button class="key">❌</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

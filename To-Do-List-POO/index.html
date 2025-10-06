@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas Pendientes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Mi Lista de Tareas</h1>
+
+        <!-- 📝 Entrada de nueva tarea con fecha y prioridad -->
+        <div class="entrada-tarea">
+            <input type="text" id="input-tarea" placeholder="Añadir una nueva tarea...">
+
+            <input type="date" id="input-fecha-limite" title="Fecha límite">
+
+            <select id="input-importancia" title="Importancia">
+                <option value="normal">Normal</option>
+                <option value="alta">Alta</option>
+                <option value="baja">Baja</option>
+            </select>
+
+            <button id="btn-añadir">Añadir</button>
+        </div>
+
+        <!-- 📋 Lista de tareas -->
+        <ul id="lista-tareas"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
