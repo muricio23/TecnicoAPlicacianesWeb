@@ -63,7 +63,13 @@ h1 {
     transition: background-color 0.3s;
 }
 
-#buscar-btn:hover {
+/* Estilo para el botón deshabilitado (estado de carga) */
+#buscar-btn:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+#buscar-btn:hover:not(:disabled) {
     background-color: #4facfe;
 }
 
@@ -98,6 +104,34 @@ h1 {
     width: 100px; /* Tamaño del ícono */
     height: 100px;
 }
+
+/* ⭐ NUEVOS ESTILOS: Detalles Adicionales (Humedad y Viento) */
+.detalles {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: 15px;
+    font-size: 1em;
+}
+
+.detalles div {
+    text-align: center;
+}
+
+.detalles .etiqueta {
+    display: block;
+    color: #666;
+    font-weight: 400;
+    margin-bottom: 3px;
+}
+
+#humedad-valor, #viento-valor {
+    font-weight: 600;
+    color: #333;
+}
+/* ⭐ FIN NUEVOS ESTILOS */
+
 
 /* Estilos para el mensaje de error */
 .error-mensaje {
