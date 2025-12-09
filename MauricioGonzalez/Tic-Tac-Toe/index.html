@@ -9,10 +9,17 @@
 <body>
     <div class="container">
         <h1>Tic-Tac-Toe 🐱</h1>
+
+        <div id="mode-selection">
+            <label for="gameMode">Selecciona el Modo:</label>
+            <select id="gameMode">
+                <option value="pvp">Jugador vs. Jugador</option>
+                <option value="pvc">Jugador vs. Computadora</option>
+            </select>
+        </div>
         <div id="status">Turno de X</div>
         <div class="score-board">
-            <div id="scoreX" class="score">Jugador 1: 0</div>
-            <div id="scoreO" class="score">O: 0</div>
+            <div id="scoreX" class="score">X: 0</div> <div id="scoreO" class="score">O: 0</div>
         </div>
         <div id="board" class="board">
             <div class="cell" data-index="0"></div>

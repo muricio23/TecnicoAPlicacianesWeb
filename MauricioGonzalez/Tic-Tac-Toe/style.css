@@ -125,7 +125,7 @@ button:active {
 
 /* Estilos específicos para los botones si es necesario */
 #restartButton {
-    /* Puedes añadir estilos específicos aquí si quieres que se vea diferente al de reiniciar marcador */
+    background-color: var(--header-color); /* Usamos un color diferente */
 }
 
 #resetScoreButton {
@@ -135,4 +135,32 @@ button:active {
 
 #resetScoreButton:hover {
     background-color: #d32f2f;
+}
+
+#mode-selection {
+    margin-bottom: 20px;
+}
+
+#mode-selection label {
+    font-size: 1.1em;
+    color: var(--header-color);
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#gameMode {
+    padding: 8px 12px;
+    font-size: 1em;
+    border: 2px solid var(--status-color);
+    border-radius: 5px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#gameMode:focus {
+    outline: none;
+    border-color: var(--playerO-color);
+    box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
 }
