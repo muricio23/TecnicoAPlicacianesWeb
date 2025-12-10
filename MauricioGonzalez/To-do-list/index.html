@@ -7,16 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="contenedor">
-        <h1>Mi Lista de Tareas</h1>
+    <div class="app-background"></div>
+    <div class="app-container">
+        <header>
+            <div class="header-content">
+                <h1>Mi Día</h1>
+                <p id="fecha-actual">Cargando fecha...</p>
+            </div>
+        </header>
         
-        <div class="entrada-tarea">
-            <input type="text" id="input-tarea" placeholder="Añadir una nueva tarea...">
-            <button id="btn-añadir">Añadir</button>
-        </div>
-        
-        <ul id="lista-tareas">
+        <main>
+            <ul id="lista-tareas" class="task-list">
+                <!-- Las tareas se insertarán aquí dinámicamente -->
             </ul>
+
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <span class="plus-icon">+</span>
+                    <input type="text" id="input-tarea" placeholder="Agregar una tarea">
+                </div>
+            </div>
+        </main>
     </div>
 
     <script src="script.js"></script>

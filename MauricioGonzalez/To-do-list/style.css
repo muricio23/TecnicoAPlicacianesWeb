@@ -1,114 +1,226 @@
-/* === Estilos Generales para el Body === */
-/* Se aplica al <body> del HTML */
+/* === Estilos Generales y Variables === */
+:root {
+    --primary-color: #788cde; /* Tono azul/morado similar a MS To Do */
+    --completed-color: #a0a0a0;
+    --text-color: #ffffff;
+    --text-secondary: #e0e0e0;
+    --bg-overlay: rgba(0, 0, 0, 0.4);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --item-bg: rgba(30, 30, 30, 0.6); /* Fondo semi-transparente oscuro para tareas */
+    --item-hover: rgba(50, 50, 50, 0.7);
+    --input-bg: rgba(0, 0, 0, 0.5);
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.2);
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff; /* Fondo blanco azulado muy claro */
-    display: flex;
-    justify-content: center; /* Centra horizontalmente el contenedor */
-    align-items: flex-start; /* Alinea arriba */
-    padding-top: 50px;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
     margin: 0;
-    min-height: 100vh;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    color: var(--text-color);
 }
 
-/* === Contenedor Principal === */
-/* Se aplica al <div class="contenedor"> que envuelve todo */
-.contenedor {
-    background-color: #ffffff; /* Fondo blanco */
-    padding: 30px;
-    border-radius: 12px; /* Bordes redondeados */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+/* === Fondo de la Aplicación === */
+.app-background {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 420px; /* Ancho máximo para mantenerlo compacto */
+    height: 100%;
+    /* Gradiente estilo Aurora */
+    background: linear-gradient(135deg, #2b1055, #7597de);
+    z-index: -1;
 }
 
-/* === Título Principal === */
-/* Se aplica al <h1> dentro del contenedor */
-h1 {
-    text-align: center;
-    color: #20b2aa; /* Verde Aqua Oscuro */
-    margin-bottom: 25px;
-}
-
-/* === Área de Entrada de Tarea === */
-/* Se aplica al <div class="entrada-tarea"> que contiene el input y el botón */
-.entrada-tarea {
+.app-container {
     display: flex;
-    margin-bottom: 20px;
+    flex-direction: column;
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--bg-overlay);
+    backdrop-filter: blur(10px); /* Efecto Glassmorphism */
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-/* === Campo de Texto para Nueva Tarea === */
-/* Se aplica al <input id="input-tarea"> */
-#input-tarea {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px 0 0 5px; /* Bordes redondeados a la izquierda */
-    font-size: 16px;
+/* === Header === */
+header {
+    padding: 30px 24px;
 }
 
-/* === Botón de Añadir Tarea === */
-/* Se aplica al <button id="btn-añadir"> */
-#btn-añadir {
-    padding: 10px 15px;
-    background-color: #40e0d0; /* Verde Aqua Brillante */
-    color: white;
-    border: none;
-    border-radius: 0 8px 8px 0; /* Bordes redondeados a la derecha */
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: bold;
+.header-content h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.5px;
 }
 
-/* === Hover del Botón de Añadir === */
-#btn-añadir:hover {
-    background-color: #20b2aa; /* Verde Aqua Oscuro al pasar el ratón */
+#fecha-actual {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin: 5px 0 0 0;
+}
+
+/* === Main Content === */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Para permitir scroll solo en la lista */
+    padding-bottom: 20px;
 }
 
 /* === Lista de Tareas === */
-/* Se aplica al <ul id="lista-tareas"> */
-#lista-tareas {
-    list-style: none; /* Elimina los puntos de la lista */
-    padding: 0;
+.task-list {
+    flex: 1;
+    list-style: none;
+    padding: 0 24px;
+    margin: 0;
+    overflow-y: auto;
+    /* Estilo del scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.3) transparent;
 }
 
-/* === Cada Tarea Individual === */
-/* Se aplica a cada <li> dentro de la lista */
-#lista-tareas li {
-    background-color: #e6f9ff; /* Fondo muy claro para cada tarea */
-    border-left: 5px solid #40e0d0; /* Borde vertical Aqua */
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 8px;
+.task-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 3px;
+}
+
+.task-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    cursor: pointer; /* Indica que se puede marcar como completada */
-    transition: all 0.3s;
+    background-color: var(--glass-bg);
+    margin-bottom: 8px;
+    padding: 12px 16px;
+    border-radius: 4px;
+    transition: background-color 0.2s, transform 0.1s;
+    cursor: pointer;
+    border: 1px solid transparent;
 }
 
-/* === Tareas Marcadas como Completadas === */
-/* Se aplica cuando el <li> tiene la clase "completada" */
-.completada {
-    text-decoration: line-through;
-    color: #888;
-    background-color: #c0ebeb !important; /* Aqua claro para completadas */
-    border-left: 5px solid #20b2aa; /* Borde Aqua más oscuro */
+.task-item:hover {
+    background-color: var(--item-hover);
+    box-shadow: var(--shadow-sm);
 }
 
-/* === Botón de Eliminar Tarea === */
-/* Se aplica al <button class="btn-eliminar"> dentro de cada <li> */
+/* Checkbox personalizado */
+.task-checkbox-container {
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--text-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.custom-checkbox::after {
+    content: '✓';
+    font-size: 14px;
+    color: transparent;
+    transition: all 0.2s;
+}
+
+.task-text {
+    flex: 1;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+/* Botón Eliminar (x) */
 .btn-eliminar {
     background: none;
     border: none;
-    color: #dc3545; /* Rojo para eliminar */
-    font-size: 20px; /* Más grande para visibilidad */
+    color: var(--text-secondary);
+    font-size: 18px;
+    opacity: 0;
     cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.3s;
+    transition: opacity 0.2s, color 0.2s;
+    padding: 4px 8px;
 }
 
-/* === Hover del Botón de Eliminar === */
+.task-item:hover .btn-eliminar {
+    opacity: 0.7;
+}
+
 .btn-eliminar:hover {
-    opacity: 1;
+    color: #ff6b6b;
+    opacity: 1 !important;
+}
+
+/* === Estado Completado === */
+.task-item.completada .custom-checkbox {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.task-item.completada .custom-checkbox::after {
+    color: white;
+}
+
+.task-item.completada .task-text {
+    text-decoration: line-through;
+    color: var(--completed-color);
+}
+
+/* === Input Area === */
+.input-container {
+    padding: 16px 24px;
+    background: transparent;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: var(--input-bg);
+    border-radius: 4px;
+    padding: 12px 16px;
+    transition: background-color 0.2s;
+}
+
+.input-wrapper:focus-within {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.plus-icon {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-right: 16px;
+    font-weight: 300;
+}
+
+#input-tarea {
+    flex: 1;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    font-family: inherit;
+}
+
+#input-tarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .app-container {
+        max-width: 100%;
+    }
 }

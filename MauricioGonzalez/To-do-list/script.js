@@ -1,81 +1,101 @@
-// 1. Referencias a elementos clave del DOM
+// 1. Elementos del DOM
 const inputTarea = document.getElementById('input-tarea');
-const btnAñadir = document.getElementById('btn-añadir');
 const listaTareas = document.getElementById('lista-tareas');
+const fechaActualElemento = document.getElementById('fecha-actual');
 
-// 2. Función para guardar el estado actual de las tareas en localStorage
-function guardarTareas() {
-    localStorage.setItem('tareasHTML', listaTareas.innerHTML);
+// 2. Mostrar Fecha Actual
+function mostrarFecha() {
+    const opciones = { weekday: 'long', month: 'long', day: 'numeric' };
+    const fecha = new Date();
+    // Capitalizar la primera letra
+    let fechaTexto = fecha.toLocaleDateString('es-ES', opciones);
+    fechaTexto = fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
+    fechaActualElemento.textContent = fechaTexto;
 }
 
-// 3. Función para cargar las tareas guardadas al iniciar la página
+// 3. Cargar y Guardar Tareas
+function guardarTareas() {
+    localStorage.setItem('msTodoTasks', listaTareas.innerHTML);
+}
+
 function cargarTareas() {
-    const tareasGuardadas = localStorage.getItem('tareasHTML');
+    const tareasGuardadas = localStorage.getItem('msTodoTasks');
     if (tareasGuardadas) {
         listaTareas.innerHTML = tareasGuardadas;
-        asignarEventosATareasExistentes(); // Re-asignar eventos
+        asignarEventosATareasExistentes();
     }
 }
 
-// 4. Re-asignar eventos a tareas cargadas desde localStorage
-function asignarEventosATareasExistentes() {
-    const elementosLi = listaTareas.querySelectorAll('li');
-    elementosLi.forEach(tareaLi => {
-        tareaLi.addEventListener('click', function() {
-            tareaLi.classList.toggle('completada');
+// 4. Crear HTML de una Tarea
+function crearElementoTarea(texto) {
+    const li = document.createElement('li');
+    li.classList.add('task-item');
+
+    // Estructura: Checkbox + Texto + Botón Eliminar
+    li.innerHTML = `
+        <div class="task-checkbox-container">
+            <div class="custom-checkbox"></div>
+        </div>
+        <span class="task-text">${texto}</span>
+        <button class="btn-eliminar">×</button>
+    `;
+
+    asignarEventosTarea(li);
+    return li;
+}
+
+// 5. Asignar Eventos a una Tarea (Nueva o Existente)
+function asignarEventosTarea(li) {
+    // Al hacer click en todo el item (o específicamente en el checkbox)
+    li.addEventListener('click', function(e) {
+        // Si el click fue en el botón de eliminar, no hacemos toggle
+        if (e.target.classList.contains('btn-eliminar')) return;
+
+        li.classList.toggle('completada');
+        
+        // Reproducir sonido opcional aquí
+        // playSound(); 
+        
+        guardarTareas();
+    });
+
+    const btnEliminar = li.querySelector('.btn-eliminar');
+    if (btnEliminar) {
+        btnEliminar.addEventListener('click', function() {
+            // Animación de salida podría ir aquí
+            listaTareas.removeChild(li);
             guardarTareas();
         });
-
-        const botonEliminar = tareaLi.querySelector('.btn-eliminar');
-        if (botonEliminar) {
-            botonEliminar.addEventListener('click', function(evento) {
-                evento.stopPropagation();
-                listaTareas.removeChild(tareaLi);
-                guardarTareas();
-            });
-        }
-    });
+    }
 }
 
-// 5. Función principal para añadir una nueva tarea
+function asignarEventosATareasExistentes() {
+    const tareas = listaTareas.querySelectorAll('.task-item');
+    tareas.forEach(tarea => asignarEventosTarea(tarea));
+}
+
+// 6. Añadir Nueva Tarea
 function añadirTarea() {
-    const textoTarea = inputTarea.value.trim();
-    if (textoTarea === '') {
-        alert('Por favor, escribe una tarea antes de añadirla.');
-        return;
-    }
+    const texto = inputTarea.value.trim();
+    if (texto === '') return; // No hacer nada si está vacío
 
-    const nuevaTarea = document.createElement('li');
-    nuevaTarea.textContent = textoTarea;
-
-    const botonEliminar = document.createElement('button');
-    botonEliminar.textContent = 'X';
-    botonEliminar.classList.add('btn-eliminar');
-
-    nuevaTarea.addEventListener('click', function() {
-        nuevaTarea.classList.toggle('completada');
-        guardarTareas();
-    });
-
-    botonEliminar.addEventListener('click', function(evento) {
-        evento.stopPropagation();
-        listaTareas.removeChild(nuevaTarea);
-        guardarTareas();
-    });
-
-    nuevaTarea.appendChild(botonEliminar);
+    const nuevaTarea = crearElementoTarea(texto);
     listaTareas.appendChild(nuevaTarea);
+    
+    // Scroll al final
+    listaTareas.scrollTop = listaTareas.scrollHeight;
+    
     inputTarea.value = '';
     guardarTareas();
 }
 
-// 6. Asignar eventos iniciales
-btnAñadir.addEventListener('click', añadirTarea);
-inputTarea.addEventListener('keypress', function(evento) {
-    if (evento.key === 'Enter') {
+// 7. Event Listener para el Input
+inputTarea.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
         añadirTarea();
     }
 });
 
-// 7. Cargar tareas al iniciar la página
+// Inicialización
+mostrarFecha();
 cargarTareas();
